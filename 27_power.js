@@ -1,4 +1,4 @@
-function power(base, exponent) {
+
   // base를 exponent 반복하여 곱하는 반복문 작성
   // base를 94906249로 나누었을때 1보다 크다면 나누어 나머지에 다시 계산
   // base 반환
@@ -49,4 +49,14 @@ function power(base, exponent) {
   // exponent가 홀수였을 경우 내림을 해주었기 때문에 base를 한번더 곱해주고 94906249을 넘길 가능성이 있기 때문에 94906249의 나머지를 구해본다.
   // 짝수일 경우 나머지를 그래도 반환
   // 지금은 외워서 하는것 밖에 되지 않기 때문에 다음에 있다가 정규수업끝나고 한번더 풀어봐야겠다.
-}
+  function power(base, exponent) {
+
+    if(exponent===0) {
+      // base의 0제곱이므로 1
+      return 1
+    }
+    const sqrt = power(base, Math.floor(exponent/2))
+    const result = (sqrt * sqrt)%94906249
+    // 반으로 나누었을때 내림을 해주었기 때문에 원래 홀수 였다면 base를 한번더 곱해주어야하며 곱했을때 94906249가 넘을 수 있어 나머지를 구해준다.
+    return exponent%2?(result*base)%94906249:result
+  }
